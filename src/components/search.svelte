@@ -13,11 +13,8 @@
   let terms;
   $: parsed = qs.parse($querystring, { ignoreQueryPrefix: true });
   $: {
-    if (parsed.terms) {
+    if (parsed.terms)
       api.fts({ terms: parsed.terms, limit }).then((res) => (vacancies = res));
-    } else {
-      vacancies = [];
-    }
   }
 
   onMount(() => {
