@@ -1,8 +1,27 @@
 :root {
   font-size: 1.125em;
+  --light-gray: #777777;
 }
 
 body {
   height: 100vh;
   width: 100vw;
+  padding: 1em;
+}
+
+.ts {
+  font-size: 0.8rem;
+  color: var(--light-gray);
+  margin-bottom: 0;
+}
+
+.vacancy {
+  padding-bottom: 1rem;
+}
+
+.more {
+}
+
+.logout {
+  float: right;
 }
