@@ -1,4 +1,5 @@
 <script>
+  import { vacancies } from "../stores/vacancies";
   import {
     parse,
     format,
@@ -23,5 +24,8 @@
   }
 </script>
 
-<p>{time}</p>
-<a href={vacancy.url}> {vacancy.header} </a>
+<div class="card">
+  <p>{time}</p>
+  <a href={vacancy.url}> {vacancy.header} </a>
+  <button on:click={() => vacancies.hide(id)}>hide</button>
+</div>

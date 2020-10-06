@@ -1,4 +1,5 @@
 <script>
+  import { replace } from "svelte-spa-router";
   import api from "../services/api";
   import { user } from "../stores/user";
 
@@ -8,7 +9,10 @@
   const login = () => {
     api
       .login(email, password)
-      .then((res) => user.set(res))
+      .then((res) => {
+        user.set(res);
+        replace("/search");
+      })
       .catch((err) => user.set(null));
   };
 </script>
