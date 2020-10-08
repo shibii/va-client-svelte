@@ -1,5 +1,5 @@
 <script>
-  import qs from "qs";
+  import { parse, stringify } from "qs";
   import { querystring, push } from "svelte-spa-router";
   import api from "../services/api";
   import Nav from "./nav.svelte";
@@ -11,7 +11,7 @@
 
   let vacancies = [];
   let terms;
-  $: parsed = qs.parse($querystring, { ignoreQueryPrefix: true });
+  $: parsed = parse($querystring, { ignoreQueryPrefix: true });
   $: {
     if (parsed.terms)
       api.fts({ terms: parsed.terms, limit }).then((res) => (vacancies = res));
@@ -22,7 +22,7 @@
   });
 
   const search = () => {
-    push("/search?" + qs.stringify({ terms }));
+    push("/search?" + stringify({ terms }));
   };
   const more = () => {
     const offsetId = vacancies[vacancies.length - 1].id;
@@ -33,6 +33,10 @@
   const hide = (id) => {
     vacancies = vacancies.filter((vacancy) => vacancy.id !== id);
     api.hide(id);
+  };
+  const pin = (id) => {
+    vacancies = vacancies.filter((vacancy) => vacancy.id !== id);
+    api.pin(id);
   };
 </script>
 
@@ -48,7 +52,10 @@
     <p class="ts">{formatTimestamp(vacancy.ts)}</p>
     <a href={vacancy.url}>{vacancy.header}</a>
     <button on:click={() => hide(vacancy.id)}>hide</button>
+    <button on:click={() => pin(vacancy.id)}>pin</button>
   </div>
 {/each}
 
-{#if vacancies.length}<button class="more" on:click={more}>more</button>{/if}
+{#if vacancies.length >= limit}
+  <button class="more" on:click={more}>more</button>
+{/if}

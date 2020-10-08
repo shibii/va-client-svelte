@@ -22,5 +22,6 @@
 <nav>
   <a href="/search" use:link use:active>search</a>
   <a href="/hidden" use:link use:active>hidden</a>
+  <a href="/pinned" use:link use:active>pinned</a>
   <a class="logout" href="/" on:click={logout}>logout</a>
 </nav>

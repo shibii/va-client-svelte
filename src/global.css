@@ -1,12 +1,13 @@
 :root {
   font-size: 1.125em;
   --light-gray: #777777;
+  --bg-color: #f7f7f7;
 }
 
 body {
   height: 100vh;
-  width: 100vw;
-  padding: 1em;
+  background-color: var(--bg-color);
+  padding: 2em;
 }
 
 .ts {
@@ -17,9 +18,6 @@ body {
 
 .vacancy {
   padding-bottom: 1rem;
-}
-
-.more {
 }
 
 .logout {

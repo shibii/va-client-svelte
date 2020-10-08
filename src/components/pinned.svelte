@@ -10,19 +10,19 @@
 
   onMount(() => {
     api
-      .getHidden({ limit })
+      .getPinned({ limit })
       .then((res) => (vacancies = res))
       .catch((err) => user.check());
   });
 
-  const unhide = (id) => {
+  const unpin = (id) => {
     vacancies = vacancies.filter((vacancy) => vacancy.id !== id);
-    api.unhide(id);
+    api.unpin(id);
   };
 
   const more = () => {
     const offsetId = vacancies[vacancies.length - 1].id;
-    api.getHidden({ limit, offsetId }).then((res) => {
+    api.getPinned({ limit, offsetId }).then((res) => {
       vacancies = [...vacancies, ...res];
     });
   };
@@ -34,7 +34,7 @@
   <div class="vacancy">
     <p class="ts">{formatTimestamp(vacancy.ts)}</p>
     <a href={vacancy.url}>{vacancy.header}</a>
-    <button on:click={() => unhide(vacancy.id)}>unhide</button>
+    <button on:click={() => unpin(vacancy.id)}>unpin</button>
   </div>
 {/each}
 
