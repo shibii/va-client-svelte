@@ -1,6 +1,6 @@
 <script>
   import { parse, stringify } from "qs";
-  import { querystring, push } from "svelte-spa-router";
+  import { querystring, push, replace } from "svelte-spa-router";
   import api from "../services/api";
   import Nav from "./nav.svelte";
   import { formatTimestamp } from "../services/util";
@@ -14,7 +14,10 @@
   $: parsed = parse($querystring, { ignoreQueryPrefix: true });
   $: {
     if (parsed.terms)
-      api.fts({ terms: parsed.terms, limit }).then((res) => (vacancies = res));
+      api
+        .fts({ terms: parsed.terms, limit })
+        .then((res) => (vacancies = res))
+        .catch((err) => user.check());
   }
 
   onMount(() => {
