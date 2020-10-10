@@ -43,11 +43,28 @@
   };
 </script>
 
+<style>
+  form {
+    display: flex;
+  }
+  form > #text {
+    flex-grow: 1;
+  }
+  form > #send {
+    width: 80px;
+  }
+</style>
+
 <Nav />
 
 <form on:submit|preventDefault={search}>
-  <input type="text" name="search" bind:value={terms} spellcheck="false" />
-  <input type="submit" value="search" />
+  <input
+    id="text"
+    type="text"
+    name="search"
+    bind:value={terms}
+    spellcheck="false" />
+  <input id="send" type="submit" value="search" />
 </form>
 
 {#each vacancies as vacancy (vacancy.id)}
