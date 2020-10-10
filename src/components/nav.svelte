@@ -14,6 +14,23 @@
 </script>
 
 <style>
+  nav {
+    display: flex;
+    margin: 1em 0;
+  }
+
+  nav > a {
+    display: block;
+  }
+
+  nav > a + a {
+    margin-left: 1em;
+  }
+
+  nav > .nav-right {
+    margin-left: auto;
+  }
+
   :global(a.active) {
     color: dimgray;
   }
@@ -23,5 +40,5 @@
   <a href="/search" use:link use:active>search</a>
   <a href="/hidden" use:link use:active>hidden</a>
   <a href="/pinned" use:link use:active>pinned</a>
-  <a class="logout" href="/" on:click={logout}>logout</a>
+  <a class="nav-right" href="/" on:click={logout}>logout</a>
 </nav>
