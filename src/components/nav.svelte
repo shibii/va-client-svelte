@@ -40,5 +40,5 @@
   <a href="/search" use:link use:active={{ path: /\/search/ }}>search</a>
   <a href="/hidden" use:link use:active>hidden</a>
   <a href="/pinned" use:link use:active>pinned</a>
-  <a class="nav-right" href="/" on:click={logout}>logout</a>
+  <a class="nav-right" href="/login" on:click={logout}>logout</a>
 </nav>
