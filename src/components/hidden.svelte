@@ -2,8 +2,8 @@
   import { onMount } from "svelte";
   import Nav from "./nav.svelte";
   import api from "../services/api";
-  import { formatTimestamp } from "../services/util";
   import { user } from "../stores/user";
+  import Vacancy from "./vacancy.svelte";
 
   let vacancies = [];
   const limit = 20;
@@ -36,9 +36,9 @@
 <ul>
   {#each vacancies as vacancy (vacancy.id)}
     <li class="vacancy">
-      <p class="ts">{formatTimestamp(vacancy.ts)}</p>
-      <a href={vacancy.url}>{vacancy.header}</a>
-      <button on:click={() => unhide(vacancy.id)}>unhide</button>
+      <Vacancy {vacancy}>
+        <button on:click={() => unhide(vacancy.id)}>unhide</button>
+      </Vacancy>
     </li>
   {/each}
 </ul>

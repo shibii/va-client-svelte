@@ -14,12 +14,8 @@ body {
   background-color: var(--bg-color);
 }
 
-.ts {
-  font-size: 0.8rem;
-  color: var(--light-gray);
-  margin-bottom: 0;
-}
-
-.vacancy {
-  padding-bottom: 1rem;
+ul,
+ol {
+  list-style-type: none;
+  padding: 0;
 }

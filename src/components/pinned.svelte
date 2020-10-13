@@ -2,8 +2,8 @@
   import { onMount } from "svelte";
   import Nav from "./nav.svelte";
   import api from "../services/api";
-  import { formatTimestamp } from "../services/util";
   import { user } from "../stores/user";
+  import Vacancy from "./vacancy.svelte";
 
   let vacancies = [];
   const limit = 20;
@@ -35,9 +35,9 @@
 
 {#each vacancies as vacancy (vacancy.id)}
   <div class="vacancy">
-    <p class="ts">{formatTimestamp(vacancy.ts)}</p>
-    <a href={vacancy.url}>{vacancy.header}</a>
-    <button on:click={() => unpin(vacancy.id)}>unpin</button>
+    <Vacancy {vacancy}>
+      <button on:click={() => unpin(vacancy.id)}>unpin</button>
+    </Vacancy>
   </div>
 {/each}
 

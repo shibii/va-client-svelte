@@ -1,11 +1,11 @@
 <script>
   import { parse, stringify } from "qs";
-  import { querystring, push, replace } from "svelte-spa-router";
+  import { querystring, push } from "svelte-spa-router";
   import api from "../services/api";
   import Nav from "./nav.svelte";
-  import { formatTimestamp } from "../services/util";
   import { onMount } from "svelte";
   import { user } from "../stores/user";
+  import Vacancy from "./vacancy.svelte";
 
   const limit = 20;
   let visibleMore = true;
@@ -73,10 +73,10 @@
 <ul>
   {#each vacancies as vacancy (vacancy.id)}
     <li class="vacancy">
-      <p class="ts">{formatTimestamp(vacancy.ts)}</p>
-      <a href={vacancy.url}>{vacancy.header}</a>
-      <button on:click={() => hide(vacancy.id)}>hide</button>
-      <button on:click={() => pin(vacancy.id)}>pin</button>
+      <Vacancy {vacancy}>
+        <button on:click={() => hide(vacancy.id)}>hide</button>
+        <button on:click={() => pin(vacancy.id)}>pin</button>
+      </Vacancy>
     </li>
   {/each}
 </ul>
