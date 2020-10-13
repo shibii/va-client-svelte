@@ -8,6 +8,7 @@
   import { user } from "../stores/user";
 
   const limit = 20;
+  let visibleMore = true;
 
   let vacancies = [];
   let terms;
@@ -28,9 +29,11 @@
     push("/search?" + stringify({ terms }));
   };
   const more = () => {
+    visibleMore = false;
     const offsetId = vacancies[vacancies.length - 1].id;
     api.fts({ terms: parsed.terms, limit, offsetId }).then((res) => {
       vacancies = [...vacancies, ...res];
+      visibleMore = true;
     });
   };
   const hide = (id) => {
@@ -67,15 +70,17 @@
   <input id="send" type="submit" value="search" />
 </form>
 
-{#each vacancies as vacancy (vacancy.id)}
-  <div class="vacancy">
-    <p class="ts">{formatTimestamp(vacancy.ts)}</p>
-    <a href={vacancy.url}>{vacancy.header}</a>
-    <button on:click={() => hide(vacancy.id)}>hide</button>
-    <button on:click={() => pin(vacancy.id)}>pin</button>
-  </div>
-{/each}
+<ul>
+  {#each vacancies as vacancy (vacancy.id)}
+    <li class="vacancy">
+      <p class="ts">{formatTimestamp(vacancy.ts)}</p>
+      <a href={vacancy.url}>{vacancy.header}</a>
+      <button on:click={() => hide(vacancy.id)}>hide</button>
+      <button on:click={() => pin(vacancy.id)}>pin</button>
+    </li>
+  {/each}
+</ul>
 
-{#if vacancies.length >= limit}
+{#if visibleMore && vacancies.length >= limit}
   <button class="more" on:click={more}>more</button>
 {/if}

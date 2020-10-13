@@ -7,6 +7,7 @@
 
   let vacancies = [];
   const limit = 20;
+  let visibleMore = true;
 
   onMount(() => {
     api
@@ -21,9 +22,11 @@
   };
 
   const more = () => {
+    visibleMore = false;
     const offsetId = vacancies[vacancies.length - 1].id;
     api.getPinned({ limit, offsetId }).then((res) => {
       vacancies = [...vacancies, ...res];
+      visibleMore = true;
     });
   };
 </script>
@@ -38,6 +41,6 @@
   </div>
 {/each}
 
-{#if vacancies.length >= limit}
+{#if visibleMore && vacancies.length >= limit}
   <button class="more" on:click={more}>more</button>
 {/if}
