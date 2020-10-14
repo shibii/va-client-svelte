@@ -14,31 +14,27 @@
 </script>
 
 <style>
-  nav {
+  div {
     display: flex;
-    margin: 1em 0;
+    justify-content: space-between;
   }
 
-  nav > a {
-    display: block;
-  }
-
-  nav > a + a {
-    margin-left: 1em;
-  }
-
-  nav > .nav-right {
-    margin-left: auto;
+  a {
+    flex-grow: 1;
+    text-align: center;
+    background-color: var(--theme2);
+    color: var(--theme6);
+    text-decoration: unset;
   }
 
   :global(a.active) {
-    color: dimgray;
+    background-color: var(--theme6);
+    color: var(--theme1);
   }
 </style>
 
-<nav>
+<div>
   <a href="/search" use:link use:active={{ path: /\/search/ }}>search</a>
   <a href="/hidden" use:link use:active>hidden</a>
   <a href="/pinned" use:link use:active>pinned</a>
-  <a class="nav-right" href="/login" on:click={logout}>logout</a>
-</nav>
+</div>

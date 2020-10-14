@@ -1,6 +1,5 @@
 <script>
   import { onMount } from "svelte";
-  import Nav from "./nav.svelte";
   import api from "../services/api";
   import { user } from "../stores/user";
   import Vacancy from "./vacancy.svelte";
@@ -31,12 +30,12 @@
   };
 </script>
 
-<Nav />
-
 {#each vacancies as vacancy (vacancy.id)}
   <div class="vacancy">
     <Vacancy {vacancy}>
-      <button on:click={() => unpin(vacancy.id)}>unpin</button>
+      <button
+        class="vacancy-button"
+        on:click={() => unpin(vacancy.id)}>unpin</button>
     </Vacancy>
   </div>
 {/each}

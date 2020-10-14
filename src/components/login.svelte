@@ -1,5 +1,5 @@
 <script>
-  import { replace, push, link } from "svelte-spa-router";
+  import { replace, link } from "svelte-spa-router";
   import api from "../services/api";
   import { user } from "../stores/user";
 

@@ -1,6 +1,5 @@
 <script>
   import { onMount } from "svelte";
-  import Nav from "./nav.svelte";
   import api from "../services/api";
   import { user } from "../stores/user";
   import Vacancy from "./vacancy.svelte";
@@ -31,13 +30,13 @@
   };
 </script>
 
-<Nav />
-
 <ul>
   {#each vacancies as vacancy (vacancy.id)}
     <li class="vacancy">
       <Vacancy {vacancy}>
-        <button on:click={() => unhide(vacancy.id)}>unhide</button>
+        <button
+          class="vacancy-button"
+          on:click={() => unhide(vacancy.id)}>unhide</button>
       </Vacancy>
     </li>
   {/each}

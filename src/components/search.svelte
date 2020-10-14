@@ -2,7 +2,6 @@
   import { parse, stringify } from "qs";
   import { querystring, push } from "svelte-spa-router";
   import api from "../services/api";
-  import Nav from "./nav.svelte";
   import { onMount } from "svelte";
   import { user } from "../stores/user";
   import Vacancy from "./vacancy.svelte";
@@ -49,6 +48,7 @@
 <style>
   form {
     display: flex;
+    margin-top: 1em;
   }
   form > #text {
     flex-grow: 1;
@@ -57,8 +57,6 @@
     width: 80px;
   }
 </style>
-
-<Nav />
 
 <form on:submit|preventDefault={search}>
   <input
@@ -74,8 +72,12 @@
   {#each vacancies as vacancy (vacancy.id)}
     <li class="vacancy">
       <Vacancy {vacancy}>
-        <button on:click={() => hide(vacancy.id)}>hide</button>
-        <button on:click={() => pin(vacancy.id)}>pin</button>
+        <button
+          class="vacancy-button"
+          on:click={() => hide(vacancy.id)}>hide</button>
+        <button
+          class="vacancy-button"
+          on:click={() => pin(vacancy.id)}>pin</button>
       </Vacancy>
     </li>
   {/each}
