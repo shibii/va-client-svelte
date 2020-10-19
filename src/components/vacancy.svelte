@@ -13,10 +13,17 @@
     color: var(--light-gray);
     margin: 0;
   }
+  strong {
+    color: var(--theme6);
+  }
 </style>
 
 <div>
-  <p class="ts">{formatTimestamp(vacancy.ts)}</p>
+  <p class="ts">
+    {formatTimestamp(vacancy.ts)}
+    &middot;
+    <strong>{vacancy.source}</strong>
+  </p>
   <a href={vacancy.url}>{vacancy.header}</a>
   <slot />
 </div>
