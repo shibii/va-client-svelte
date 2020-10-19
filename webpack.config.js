@@ -9,6 +9,8 @@ module.exports = {
     bundle: ["./src/main.js"],
   },
   devServer: {
+    host: "0.0.0.0",
+    disableHostCheck: true,
     historyApiFallback: true,
     proxy: {
       "/api": {
